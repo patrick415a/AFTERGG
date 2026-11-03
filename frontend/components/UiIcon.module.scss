@@ -1,0 +1,22 @@
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: #88a0bd;
+}
+.chevron {
+  display: block;
+  width: 10px;
+  height: 8px;
+  transform: rotate(180deg);
+}
+.chevron.expanded {
+  transform: none;
+}
+:global([data-theme='light']) .chevron {
+  filter: brightness(0);
+  opacity: 0.65;
+}

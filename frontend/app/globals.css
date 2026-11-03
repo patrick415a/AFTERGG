@@ -1,0 +1,140 @@
+:root {
+  color-scheme: dark;
+  --background: #0e1624;
+  --header: #0b1320;
+  --border: #253348;
+  --foreground: #fff;
+  --logo: #508aee;
+  --muted: #b5c3d7;
+  --nav: #77869c;
+  --nav-current: #fff;
+  --search: #19273a;
+  --search-border: #3b4e68;
+  --button: #528df3;
+  --pick: #528df3;
+  --win: #d85c5e;
+  --patch-title: #b5c3d7;
+  --patch-text: #fff;
+  --more: #77869c;
+}
+
+:root[data-theme=light] {
+  color-scheme: light;
+  --background: #f8fafd;
+  --header: #fcfdfd;
+  --border: #ddd;
+  --foreground: #061228;
+  --logo: #1865fd;
+  --muted: #535f75;
+  --nav: #757987;
+  --nav-current: #474f64;
+  --search: #fff;
+  --search-border: #e8eef7;
+  --button: #1865fd;
+  --pick: #1865fd;
+  --win: #dd2f32;
+  --patch-title: #666;
+  --patch-text: #444;
+  --more: #636682;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-pretendard), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+h1, h2, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button, a, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid #528df3;
+  outline-offset: 5px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+:root {
+  --panel: #0b1320;
+  --row: #1b283a;
+  --profile-text: #fff;
+  --profile-subtle: #ccc;
+  --rank-label: #ccc;
+  --stat-blue: #508aee;
+  --stat-red: #d85c5e;
+  --stat-remake: #a1a1aa;
+  --remake-row: #27272f;
+  --chart-track: #333;
+  --arrow-bg: #142030;
+  --asset-placeholder: #19273a;
+  --empty-bg: #19273a;
+  --empty-border: #3b4e68;
+  --empty-title: #fff;
+}
+
+:root[data-theme=light] {
+  --panel: #fff;
+  --row: #f4f5f9;
+  --profile-text: #444;
+  --profile-subtle: #666;
+  --rank-label: #4b5563;
+  --stat-blue: #1865fd;
+  --stat-red: #dd2f32;
+  --stat-remake: #6b6b75;
+  --remake-row: #eeeef0;
+  --chart-track: #ddd;
+  --arrow-bg: #ddd6;
+  --asset-placeholder: #e8eef7;
+  --empty-bg: #e8eef7;
+  --empty-border: #e8eef7;
+  --empty-title: #28292e;
+}
+
+.route-loading {
+  padding: 100px 20px;
+  text-align: center;
+  color: var(--muted);
+}/*# sourceMappingURL=globals.css.map */

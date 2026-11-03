@@ -1,0 +1,29 @@
+.notice {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 8px);
+  max-width: calc(100% - 32px);
+  width: -moz-max-content;
+  width: max-content;
+  padding: 14px 20px;
+  border: 1px solid var(--search-border);
+  border-radius: 10px;
+  background: var(--header);
+  color: var(--foreground);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+  z-index: 10;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1333333333);
+}
+.notice.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notice {
+    transition: none;
+  }
+}/*# sourceMappingURL=Notice.module.css.map */

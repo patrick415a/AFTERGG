@@ -1,0 +1,50 @@
+# 최상단 공통 제외 파일 지정
+# Dependencies
+**/node_modules/
+
+# Build outputs
+**/.next/
+**/dist/
+**/build/
+**/target/
+**/.gradle/
+
+# Environment files
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+**/application.properties
+**/application-*.properties
+**/application.yml
+**/application-*.yml
+**/application.yaml
+**/application-*.yaml
+
+# Local and IDE files
+**/.DS_Store
+**/Thumbs.db
+**/.idea/
+**/.vscode/
+**/*.iml
+**/*.log
+
+# Python
+**/__pycache__/
+**/.venv/
+**/venv/
+**/.pytest_cache/
+**/*.pyc
+
+# Flutter / Dart
+**/.dart_tool/
+**/.flutter-plugins-dependencies
+**/coverage/
+**/android/local.properties
+**/ios/Pods/
+
+# add
+**/.git-backup
+
+# 백업 파일 제외
+**/*.backup

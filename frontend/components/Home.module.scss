@@ -1,0 +1,276 @@
+// PC: Figma 1920×900 / 헤더 콘텐츠 1456px / 메인 콘텐츠 744px
+.darkIcon {
+  display: block;
+}
+.lightIcon {
+  display: none;
+}
+:global([data-theme='light']) {
+  .darkIcon {
+    display: none;
+  }
+  .lightIcon {
+    display: block;
+  }
+}
+.main {
+  width: min(744px, calc(100% - 40px));
+  margin: 0 auto;
+  padding-top: 60px;
+  padding-bottom: 96px;
+}
+.intro {
+  text-align: center;
+  h1 {
+    font-size: inherit;
+    font-weight: 700;
+    line-height: 86px;
+    height: 86px;
+  }
+  p {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--muted);
+  }
+}
+.searchSlot {
+  margin-top: 72px;
+}
+.recommendations {
+  margin-top: 48px;
+  position: relative;
+}
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  height: 24px;
+  h2 {
+    color: var(--patch-title);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    white-space: nowrap;
+  }
+}
+.pick {
+  color: var(--pick);
+}
+.win {
+  color: var(--win);
+}
+.positions {
+  display: flex;
+  gap: 8px;
+  button {
+    padding: 0;
+    width: 36px;
+    height: 24px;
+    color: #fff;
+    background: #77869c;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 14px;
+    &.selected {
+      background: #528df3;
+    }
+    &:hover {
+      filter: brightness(1.12);
+    }
+  }
+}
+.champions {
+  margin-top: 20px;
+  min-height: 128px;
+  display: grid;
+  grid-template-columns: repeat(7, 80px);
+  column-gap: 31px;
+  li {
+    text-align: center;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--patch-text);
+  }
+}
+.portrait {
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  > img,
+  > span {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+}
+.championName {
+  margin-top: 16px;
+  white-space: nowrap;
+}
+.rates {
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.5px;
+}
+.empty {
+  min-height: 128px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.retry {
+  padding: 6px 12px;
+  border: 1px solid var(--search-border);
+  border-radius: 6px;
+  background: var(--search);
+  color: var(--foreground);
+  font-size: 12px;
+}
+.sampleNote {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 19px;
+  strong {
+    font-weight: 600;
+  }
+  p + p {
+    font-size: 11px;
+    opacity: 0.85;
+  }
+}
+.patches {
+  margin-top: 56px;
+  ul {
+    margin-top: 10px;
+  }
+  li {
+    position: relative;
+  }
+  li a {
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--patch-text);
+    font-size: 14px;
+    font-variant-numeric: lining-nums tabular-nums;
+    &:hover > span:first-child {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+  .patchTitle {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ago {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #77869c;
+  }
+}
+.patchHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 17px;
+  h2 {
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--patch-title);
+    font-weight: 500;
+  }
+  a {
+    font-size: 12px;
+    color: var(--more);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+:global([data-theme='light']) .patchHeading h2 {
+  font-weight: 600;
+}
+.separator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+// 시안은 PC 기준. 작은 화면에서는 콘텐츠 순서와 색상은 유지하면서 줄바꿈합니다.
+@media (max-width: 800px) {
+  .main {
+    padding-top: 48px;
+  }
+  .champions {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .portrait {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
+@media (max-width: 600px) {
+  .intro h1 {
+    height: 67px;
+    line-height: 67px;
+  }
+  .intro p {
+    font-size: 12px;
+  }
+  .searchSlot {
+    margin-top: 48px;
+  }
+  .sectionHeading {
+    height: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .champions {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px 16px;
+  }
+  .championName {
+    margin-top: 10px;
+  }
+  .empty {
+    font-size: 13px;
+  }
+  .patches {
+    margin-top: 60px;
+  }
+}
+@media (max-width: 380px) {
+  .champions {
+    gap: 20px 8px;
+    li {
+      font-size: 12px;
+    }
+  }
+}
+
+.noPatches {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 20px;
+}

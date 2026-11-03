@@ -1,0 +1,30 @@
+.logo, .large {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: normal;
+  color: var(--foreground);
+  white-space: nowrap;
+}
+.logo span, .large span {
+  color: var(--logo);
+}
+
+.logo {
+  font-size: 27px;
+  width: 119px;
+}
+
+.large {
+  font-size: 72px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 24px;
+    width: auto;
+  }
+  .large {
+    font-size: 56px;
+  }
+}/*# sourceMappingURL=Logo.module.css.map */
