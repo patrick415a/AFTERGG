@@ -268,8 +268,9 @@ async function writeProfile(connection, { account, profile, ranks, updatedAt, wa
       puuid: account.puuid,
       gameName: account.gameName,
       tagLine: account.tagLine,
-      icon: profile?.profileIconId ?? null,
-      summonerLevel: profile?.summonerLevel ?? null,
+      // null은 기본적으로 STRING으로 바인딩되므로 NUMBER 컬럼의 COALESCE와 충돌합니다.
+      icon: { ...number, val: profile?.profileIconId ?? null },
+      summonerLevel: { ...number, val: profile?.summonerLevel ?? null },
       ranksLoaded: Array.isArray(ranks) ? 1 : 0,
       tier: solo?.tier ?? null,
       division: solo?.rank ?? null,
@@ -463,7 +464,7 @@ function saveSummonerData(input) {
             updatedAt,
             warnings: profileWarnings,
             refresh: refresh ? 1 : 0,
-            anchor: anchor ?? null,
+            anchor: { ...number, val: anchor ?? null },
             complete: historyComplete ? 1 : 0,
           },
         );

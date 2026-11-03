@@ -100,6 +100,35 @@ test('initial lookup registers only profile; explicit refresh persists all detai
   });
 });
 
+test('a new account without a KR profile is saved with warnings and reused from DB on the next search', async () => {
+  const riot = fakeRiot({ failAt: '/summoners/', failStatus: 404, emptyRanks: true });
+  await withServer(riot, async (base, database) => {
+    assert.equal(database.players.size, 0);
+    const response = await fetch(base + query);
+    assert.equal(response.status, 200);
+    const data = await response.json();
+    assert.equal(data.gameName, '테스트');
+    assert.equal(data.profileIconId, null);
+    assert.equal(data.summonerLevel, null);
+    assert.equal(data.solo, null);
+    assert.equal(data.matchesLoaded, false);
+    assert.deepEqual(data.matches, []);
+    assert.ok(data.warnings.includes('KR 서버의 소환사 프로필이 없습니다.'));
+    assert.equal(database.calls.writes, 1);
+    assert.equal(database.calls.reads, 2);
+    assert.equal(database.players.has('test-player'), true);
+    assert.equal(database.matches.size, 0);
+    assert.equal(riot.calls.some((url) => url.pathname.includes('/matches/')), false);
+
+    const calls = riot.calls.length;
+    const again = await fetch(base + query);
+    assert.equal(again.status, 200);
+    assert.deepEqual(await again.json(), data);
+    assert.equal(riot.calls.length, calls);
+    assert.equal(database.calls.writes, 1);
+  });
+});
+
 test('returning to an existing player uses DB only, even with no Riot key', async () => {
   const database = createMemoryDatabase();
   await withServer({ ...fakeRiot(), database }, async (base) => {

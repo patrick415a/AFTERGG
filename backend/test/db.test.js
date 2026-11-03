@@ -41,6 +41,31 @@ const input = () => ({
   now: stamp,
 });
 
+test('profile registration binds nullable icon and level as Oracle numbers and commits without matches', async (t) => {
+  const profileBinds = [];
+  const syncBinds = [];
+  const database = mockConnection(t, {
+    execute: async (sql, binds) => {
+      if (sql.includes('MERGE INTO SUMMONERS ')) profileBinds.push(binds);
+      if (sql.includes('MERGE INTO SUMMONER_SYNC ')) syncBinds.push(binds);
+      return { rows: [] };
+    },
+    executeMany: async () => assert.fail('Profile registration must not write match details'),
+  });
+  for (const profile of [null, { profileIconId: 0, summonerLevel: 0 }, input().profile]) {
+    await saveSummonerData({ ...input(), profile, matches: [], refresh: false, anchor: undefined });
+    const binds = profileBinds.at(-1);
+    assert.deepEqual(binds.icon, { type: oracledb.NUMBER, val: profile?.profileIconId ?? null });
+    assert.deepEqual(binds.summonerLevel, {
+      type: oracledb.NUMBER,
+      val: profile?.summonerLevel ?? null,
+    });
+    assert.deepEqual(syncBinds.at(-1).anchor, { type: oracledb.NUMBER, val: null });
+  }
+  assert.equal(profileBinds.length, 3);
+  assert.deepEqual(database.events, ['commit', 'close', 'commit', 'close', 'commit', 'close']);
+});
+
 test('refresh writes normalized matches, participants and item slots in one committed transaction', async (t) => {
   const batches = new Map();
   const database = mockConnection(t, {
