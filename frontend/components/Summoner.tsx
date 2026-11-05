@@ -71,7 +71,7 @@ function SearchResult({ query }: { query: string }) {
     );
   const empty = data.matches.length === 0;
   const visibleMatches = filterMatches(data.matches, filter);
-  const recent = visibleMatches.slice(0, 10),
+  const recent = visibleMatches.slice(0, 20),
     completed = recent.filter((m) => !m.remake),
     remakes = recent.length - completed.length,
     wins = completed.filter((m) => m.win).length,
@@ -392,7 +392,9 @@ function StatsSidebar({ matches, assets }: { matches: Match[]; assets: Assets | 
             info = championInfo(assets, p),
             rate = Math.round((list.filter((m) => m.win).length / list.length) * 100),
             deaths = list.reduce((s, m) => s + m.deaths, 0),
-            ka = list.reduce((s, m) => s + m.kills + m.assists, 0);
+            ka = list.reduce((s, m) => s + m.kills + m.assists, 0),
+            win = list.filter(((m) => m.win)).length,
+            lose = list.length - list.filter(((m) => m.win)).length;
           const color = rate > 50 ? '#508aee' : rate < 50 ? '#d85c5e' : '#9a9b9e';
           return (
             <div className={styles.frequentRow} key={p.championId}>
@@ -405,7 +407,10 @@ function StatsSidebar({ matches, assets }: { matches: Match[]; assets: Assets | 
               />
               <div className={styles.frequentStat}>
                 <p>
-                  <span>{info?.name || p.champion}</span>
+                  <span>
+                    {info?.name || p.champion}&nbsp;
+                    <span style={{fontSize: '11px'}}><span className={styles.blue}>{win}승</span> <span className={styles.red}>{lose}패</span></span>
+                  </span>
                   <span>KDA {deaths ? (ka / deaths).toFixed(2) : 'Perfect'}</span>
                 </p>
                 <div className={styles.frequentRate}>

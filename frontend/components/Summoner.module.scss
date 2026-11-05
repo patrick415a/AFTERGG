@@ -203,10 +203,10 @@
   }
 }
 .blue {
-  color: var(--stat-blue);
+  color: var(--stat-blue) !important;
 }
 .red {
-  color: var(--stat-red);
+  color: var(--stat-red) !important;
 }
 .columns {
   margin-top: 16px;
@@ -342,7 +342,7 @@
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    background: #c4c4c4;
+    background: rgba(196, 196, 196, 0.2);
   }
 }
 .slotsSmall {
@@ -638,7 +638,7 @@
 .pendingAsset {
   display: inline-block;
   flex-shrink: 0;
-  background: #c4c4c4;
+  background: rgba(196, 196, 196, 0.2);
   border-radius: 4px;
 }
 .missing {
