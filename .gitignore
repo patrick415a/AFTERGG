@@ -4,6 +4,7 @@
 
 # Build outputs
 **/.next/
+**/out/
 **/dist/
 **/build/
 **/target/

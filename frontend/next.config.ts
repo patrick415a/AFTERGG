@@ -2,6 +2,9 @@ import type { NextConfig } from 'next';
 import path from 'node:path';
 
 const nextConfig: NextConfig = {
+  output: 'export',
+  basePath: '/group/two/2',
+  trailingSlash: true,
   turbopack: { root: path.resolve(__dirname) },
   images: { unoptimized: true },
   // 최근 30일 전체 전적을 Riot 호출 제한에 맞춰 수집할 시간을 확보합니다.
