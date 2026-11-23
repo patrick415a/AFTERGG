@@ -38,7 +38,7 @@ async function getChampionRecommendations(currentTime = Date.now()) {
          JOIN LOL_MATCH_PARTICIPANTS p ON p.MATCH_ID = m.MATCH_ID
          WHERE m.DETAIL_COMPLETE = 1 AND m.REMAKE = 0 AND m.MAP_ID = 11
            AND m.QUEUE_ID IN (420, 440) AND p.CHAMPION_ID > 0
-           AND m.STORED_AT >= TO_TIMESTAMP(:dayStart, 'YYYY-MM-DD HH24:MI:SS')
+           AND m.STORED_AT >= TO_TIMESTAMP(:dayStart, 'YYYY-MM-DD HH24:MI:SS') - INTERVAL '29' DAY
            AND m.STORED_AT < TO_TIMESTAMP(:dayEnd, 'YYYY-MM-DD HH24:MI:SS')
        ), scoped AS (
          SELECT 'all' AS SCOPE_NAME, e.* FROM eligible e

@@ -2,8 +2,8 @@ import type { NextConfig } from 'next';
 import path from 'node:path';
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  basePath: '/group/two/2',
+  //output: 'export',
+  //basePath: '/group/two/2',
   trailingSlash: true,
   turbopack: { root: path.resolve(__dirname) },
   images: { unoptimized: true },
